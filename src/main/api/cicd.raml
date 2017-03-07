@@ -1,0 +1,26 @@
+#%RAML 0.8
+title: CICD Dummy
+version: 1.0
+
+/dummy:
+  get:
+    description: Return dummy information
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [{"ID":1, "code": "A"}]
+              
+  post:
+    description: Return dummy information
+    body: 
+      application/json:
+        example: |
+              [{"ID":1, "code": "A"}]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [{"message":"POST OK", "code": "OK"}]
