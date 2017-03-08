@@ -8,9 +8,9 @@ Please pull the sources from github
 
 ### Prerequisites
 
-Please make sure that your <HOME>/.m2/setting.xml contains:
+Please make sure that your HOME/.m2/setting.xml contains:
 
-- in the <servers> tag
+- in the &lt;servers&gt; tag
 ```
     <server>
     	<id>MuleRepository</id>
@@ -19,7 +19,7 @@ Please make sure that your <HOME>/.m2/setting.xml contains:
 	</server>
 ```
 
-- in the <profiles> tag
+- in the &lt;profiles&gt; tag
 
 ```
 	<profile>
