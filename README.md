@@ -8,7 +8,7 @@ Please pull the sources from github
 
 ### Prerequisites
 
-Please make sure that your HOME/.m2/setting.xml contains:
+Please make sure that your HOME/.m2/setting.xml (example provided here [setting.xml](resources/setting.xml)) contains:
 
 - in the &lt;servers&gt; tag
 ```
@@ -45,7 +45,17 @@ Please make sure that your HOME/.m2/setting.xml contains:
  
 </profile>
 ```
+- Update pom.xml and replace the CloudHub username, environment and businessGroup (if you use the business group option, please uncomment the businessGroup tag in line 78)
 
+```
+        <!-- ARA -->
+    	<prefix>ant</prefix>
+    	<!-- cloudhub.domain>MuleSoft</cloudhub.domain-->
+    	<cloudhub.username>anthonyrabiaza</cloudhub.username>
+    	<cloudhub.environment>Sandbox</cloudhub.environment>
+    	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
+		<!-- END ARA -->
+```
 ### How to build the project
 
 ```

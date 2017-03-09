@@ -19,6 +19,7 @@
     	<!-- cloudhub.domain>MuleSoft</cloudhub.domain-->
     	<cloudhub.username>anthonyrabiaza</cloudhub.username>
     	<cloudhub.environment>Sandbox</cloudhub.environment>
+    	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
 		<!-- END ARA -->
 	</properties>
 	
@@ -74,7 +75,7 @@
 					<password>${cloudhub.password}</password>
 					<applicationName>${artifactId}-${prefix}</applicationName>
 					<redeploy>true</redeploy>
-					<!-- <businessGroup>engineering\devops</businessGroup> -->
+					<!-- <businessGroup>${cloudhub.businessGroup}</businessGroup> -->
 					<environment>${cloudhub.environment}</environment>
 				</configuration>
 				<executions>

@@ -15,7 +15,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <apikit:console config-ref="cicd-config" doc:name="APIkit Console"/>
     </flow>
     <flow name="get:/dummy:cicd-config">
-        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;A&quot;}]" doc:name="Set Payload"/>
+        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;A&quot;, &quot;env&quot;: &quot;#['${env}']}]" doc:name="Set Payload"/>
     </flow>
     <flow name="post:/dummy:cicd-config">
         <set-payload value="[{&quot;message&quot;:&quot;POST OK&quot;, &quot;code&quot;: &quot;OK&quot;}]" doc:name="Set Payload"/>
