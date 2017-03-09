@@ -8,7 +8,7 @@ Please pull the sources from github
 
 ### Prerequisites
 
-Please make sure that your HOME/.m2/setting.xml (example provided here [setting.xml](resources/setting.xml)) contains:
+Please make sure that your HOME/.m2/setting.xml (example provided here [settings.xml](resources/settings.xml)) contains:
 
 - in the &lt;servers&gt; tag
 ```
