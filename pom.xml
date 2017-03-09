@@ -82,8 +82,8 @@
 					<workerType>${cloudhub.workerType}</workerType>
 					<workers>${cloudhub.workers}</workers>
 					<properties>
-					   <key1>env</key1>
-					   <anotherKey>${cloudhub.environment}</anotherKey>
+					   <env>${cloudhub.environment}</env><!-- overriding existing content in mule-app.properties -->
+					   <anotherKey>aValue</anotherKey>
 					</properties>
 				</configuration>
 				<executions>
