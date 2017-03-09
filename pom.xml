@@ -20,6 +20,8 @@
     	<cloudhub.username>anthonyrabiaza</cloudhub.username>
     	<cloudhub.environment>Sandbox</cloudhub.environment>
     	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
+    	<cloudhub.workerType>Micro</cloudhub.workerType><!-- Micro for 0.1vCores, Small for 0.2, Medium (Default) for 1, Large for 2 and xLarge for 4vCores-->
+    	<cloudhub.workers>1</cloudhub.workers>
 		<!-- END ARA -->
 	</properties>
 	
@@ -77,6 +79,12 @@
 					<redeploy>true</redeploy>
 					<!-- <businessGroup>${cloudhub.businessGroup}</businessGroup> -->
 					<environment>${cloudhub.environment}</environment>
+					<workerType>${cloudhub.workerType}</workerType>
+					<workers>${cloudhub.workers}</workers>
+					<properties>
+					   <key1>env</key1>
+					   <anotherKey>${cloudhub.environment}</anotherKey>
+					</properties>
 				</configuration>
 				<executions>
 					<execution>
