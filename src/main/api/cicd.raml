@@ -15,6 +15,11 @@ version: 1.0
   post:
     description: Return dummy information
     body: 
+      application/x-www-form-urlencoded: 
+        formParameters:
+          SAMLResponse:
+            description: SAMLReponse encoded
+            type: string
       application/json:
         example: |
               [{"ID":1, "code": "A"}]

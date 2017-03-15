@@ -20,7 +20,8 @@
     	<cloudhub.username>anthonyrabiaza</cloudhub.username>
     	<cloudhub.environment>Sandbox</cloudhub.environment>
     	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
-    	<cloudhub.workerType>Micro</cloudhub.workerType><!-- Micro for 0.1vCores, Small for 0.2, Medium (Default) for 1, Large for 2 and xLarge for 4vCores-->
+    	<cloudhub.workerType>Micro</cloudhub.workerType>
+        <!-- Micro for 0.1vCores, Small for 0.2, Medium (Default) for 1, Large for 2 and xLarge for 4vCores-->
     	<cloudhub.workers>1</cloudhub.workers>
 		<!-- END ARA -->
 	</properties>
@@ -82,7 +83,8 @@
 					<workerType>${cloudhub.workerType}</workerType>
 					<workers>${cloudhub.workers}</workers>
 					<properties>
-					   <env>${cloudhub.environment}</env><!-- overriding existing content in mule-app.properties -->
+					   <env>${cloudhub.environment}</env>
+                        <!-- overriding existing content in mule-app.properties -->
 					   <anotherKey>aValue</anotherKey>
 					</properties>
 				</configuration>
@@ -178,6 +180,12 @@
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-apikit</artifactId>
             <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.2</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
