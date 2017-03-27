@@ -65,5 +65,5 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
 ### How to deploy the project
 
 ```
-    mvn deploy -Dcloudhub.password=<Cloudhub password>
+    mvn deploy -Dcloudhub.password=<Cloudhub password> -Dprod.key=password123
 ```
