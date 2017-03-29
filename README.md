@@ -62,7 +62,26 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
     mvn clean package
 ```
 
+### Running the project
+
+When running locally, update mule-app.properties to have:
+
+For Sandbox:
+```
+env=Sandbox
+prod.key=password123
+(...)
+```
+
+For Production
+```
+env=Production
+prod.key=password456
+(...)
+```
+
 ### How to deploy the project
+
 
 ```
     mvn deploy -Dcloudhub.password=<Cloudhub password> -Dprod.key=password123

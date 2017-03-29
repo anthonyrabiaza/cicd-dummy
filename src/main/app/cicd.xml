@@ -9,6 +9,7 @@ http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mules
     <secure-property-placeholder:config name="Secure_Property_Placeholder" encryptionAlgorithm="Blowfish" key="${prod.key}" location="env-${env}-config.properties" doc:name="Secure Property Placeholder"/>
     <flow name="cicd-main">
         <http:listener config-ref="cicd-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
+        <logger level="INFO" doc:name="Logger"/>
         <apikit:router config-ref="cicd-config" doc:name="APIkit Router"/>
         <exception-strategy ref="cicd-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
