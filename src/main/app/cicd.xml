@@ -6,7 +6,21 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd">
     <http:listener-config name="cicd-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="cicd-config" raml="cicd.raml" consoleEnabled="false" doc:name="Router"/>
-    <secure-property-placeholder:config name="Secure_Property_Placeholder" encryptionAlgorithm="Blowfish" key="${prod.key}" location="env-${env}-config.properties" doc:name="Secure Property Placeholder"/>
+    <!-- 
+    <secure-property-placeholder:config name="Secure_Property_Placeholder" encryptionAlgorithm="${secure.algo}" key="${prod.key}" location="env-${env}-config.properties" doc:name="Secure Property Placeholder"/>
+     -->
+     
+    <spring:beans>
+        <spring:bean id="Secure_Property_Placeholder" class="com.mule.tools.security.placeholder.CustomSecurePropertyPlaceholderModule">
+           <spring:property name="encryptionAlgorithmVar" value="${secure.algo}" />
+           <spring:property name="encryptionModeVar" value="${secure.mode}" />
+           <spring:property name="key" value="${prod.key}" />
+           <spring:property name="location" value="env-${env}-config.properties" />
+           <spring:property name="ignoreUnresolvablePlaceholders" value="true" />
+       </spring:bean>
+    </spring:beans>
+    
+    
     <flow name="cicd-main">
         <http:listener config-ref="cicd-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <logger level="INFO" doc:name="Logger"/>
@@ -23,7 +37,7 @@ http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mules
     </flow>
     <flow name="post:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-        <set-payload value="[{&quot;message&quot;:&quot;POST OK&quot;, &quot;code&quot;: &quot;#['${code}']&quot;}]" doc:name="Set Payload"/>
+        <set-payload value="[{&quot;message&quot;:&quot;POST OK&quot;, &quot;code&quot;: &quot;#['${code}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload"/>
     </flow>
     <apikit:mapping-exception-strategy name="cicd-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
