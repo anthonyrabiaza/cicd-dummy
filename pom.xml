@@ -93,6 +93,8 @@
                         <!-- overriding existing content in mule-app.properties -->
 					   <anotherKey>aValue</anotherKey>
 					   <anotherOne>bValue</anotherOne>
+					   <secure.algo>Blowfish</secure.algo>
+					   <secure.mode>CBC</secure.mode>
 					   <prod.key>${prod.key}</prod.key>
 					</properties>
 				</configuration>
