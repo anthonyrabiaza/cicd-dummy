@@ -33,7 +33,7 @@ http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mules
     </flow>
     <flow name="get:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;A&quot;, &quot;env&quot;: &quot;#['${env}']&quot;}]" doc:name="Set Payload"/>
+        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;A&quot;, &quot;env&quot;: &quot;#['${env}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload"/>
     </flow>
     <flow name="post:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
