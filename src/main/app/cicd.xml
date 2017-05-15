@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:secure-property-placeholder="http://www.mulesoft.org/schema/mule/secure-property-placeholder" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:context="http://www.springframework.org/schema/context" xmlns:api-platform-gw="http://www.mulesoft.org/schema/mule/api-platform-gw"
+	xmlns:secure-property-placeholder="http://www.mulesoft.org/schema/mule/secure-property-placeholder" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/schema/mule/api-platform-gw/current/mule-api-platform-gw.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd">
-    <http:listener-config name="cicd-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+    <http:listener-config name="cicd-httpListenerConfig" host="0.0.0.0" port="${http.port}" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="cicd-config" raml="cicd.raml" consoleEnabled="false" doc:name="Router"/>
-    <!-- 
-    <secure-property-placeholder:config name="Secure_Property_Placeholder" encryptionAlgorithm="${secure.algo}" key="${prod.key}" location="env-${env}-config.properties" doc:name="Secure Property Placeholder"/>
-     -->
+    <api-platform-gw:api apiName="CICD Dummy" version="1.0" flowRef="cicd-main" create="true" doc:name="API Autodiscovery" apikitRef="cicd-config">
+        <api-platform-gw:description>This is an example of Mule project which can be build and deployed with Maven. You can integrate it with TeamCity, Jenkins or any other deployment tool capable of running Maven.</api-platform-gw:description>
+    </api-platform-gw:api>
      
+    <!-- 
+    <secure-property-placeholder:config name="Secure_Property_Placeholder" encryptionAlgorithm="Blowfish" key="${prod.key}" location="env-${env}-config.properties" doc:name="Secure Property Placeholder"/>
+    --> 
     <spring:beans>
         <spring:bean id="Secure_Property_Placeholder" class="com.mule.tools.security.placeholder.CustomSecurePropertyPlaceholderModule">
            <spring:property name="encryptionAlgorithmVar" value="${secure.algo}" />
@@ -19,7 +25,6 @@ http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mules
            <spring:property name="ignoreUnresolvablePlaceholders" value="true" />
        </spring:bean>
     </spring:beans>
-    
     
     <flow name="cicd-main">
         <http:listener config-ref="cicd-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
@@ -33,7 +38,7 @@ http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mules
     </flow>
     <flow name="get:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;A&quot;, &quot;env&quot;: &quot;#['${env}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload"/>
+        <set-payload value="[{&quot;ID&quot;:1, &quot;code&quot;: &quot;#['${code}']&quot;, &quot;env&quot;: &quot;#['${env}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload"/>
     </flow>
     <flow name="post:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>

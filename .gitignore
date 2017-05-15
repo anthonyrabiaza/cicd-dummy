@@ -5,3 +5,5 @@
 
 *.prefs
 /target/
+
+target/classes/mule-app.properties

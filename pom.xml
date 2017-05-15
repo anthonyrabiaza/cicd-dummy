@@ -18,12 +18,14 @@
     	<prefix>ant</prefix>
     	<cloudhub.domain>mulesoft-1422</cloudhub.domain>
     	<cloudhub.username>anthonyrabiaza</cloudhub.username>
+    	<anypoint.platform.client_id>471488ba1bc643e4b1c205a49569c05f</anypoint.platform.client_id>
     	<cloudhub.environment>Sandbox</cloudhub.environment>
     	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
-    	<cloudhub.workerType>Micro</cloudhub.workerType>
+    	<cloudhub.workerType>Small</cloudhub.workerType>
         <!-- Micro for 0.1vCores, Small for 0.2, Medium (Default) for 1, Large for 2 and xLarge for 4vCores-->
     	<cloudhub.workers>1</cloudhub.workers>
-    	<anypoint.clientid>471488ba1bc643e4b1c205a49569c05f</anypoint.clientid>
+    	<prefix.onprem>edge</prefix.onprem>
+    	<server.onprem>sandbox-edge-ant</server.onprem>
 		<!-- END ARA -->
 	</properties>
 	
@@ -85,21 +87,16 @@
 					<password>${cloudhub.password}</password>
 					<applicationName>${artifactId}-${prefix}</applicationName>
 					<redeploy>true</redeploy>
-					<!-- <businessGroup>${cloudhub.businessGroup}</businessGroup> -->
 					<environment>${cloudhub.environment}</environment>
 					<workerType>${cloudhub.workerType}</workerType>
 					<workers>${cloudhub.workers}</workers>
 					<properties>
+					   <http.port>8081</http.port>
 					   <env>${cloudhub.environment}</env>
-                        <!-- overriding existing content in mule-app.properties -->
 					   <anotherKey>aValue</anotherKey>
 					   <anotherOne>bValue</anotherOne>
-					   <anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
-					   <anypoint.platform.platform_base_uri>https://anypoint.mulesoft.com/apiplatform</anypoint.platform.platform_base_uri>
-					   <anypoint.platform.coreservice_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.coreservice_base_uri>
-					   <anypoint.platform.contracts_base_uri>https://anypoint.mulesoft.com/apigateway/ccs</anypoint.platform.contracts_base_uri>
-					   <anypoint.platform.client_id>${anypoint.clientid}</anypoint.platform.client_id>
-					   <anypoint.platform.client_secret>${anypoint.clientsecret}</anypoint.platform.client_secret>
+					   <anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+					   <anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
 					   <secure.algo>Blowfish</secure.algo>
 					   <secure.mode>CBC</secure.mode>
 					   <prod.key>${prod.key}</prod.key>

@@ -84,5 +84,5 @@ prod.key=password456
 
 
 ```
-    mvn deploy -Dcloudhub.password=<Cloudhub password> -Dprod.key=password123
+    mvn deploy -Dcloudhub.password=<Cloudhub password> -Dprod.key=<encryption key> -Danypoint.platform.client_secret=<anypoint secret>
 ```
