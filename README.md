@@ -42,6 +42,12 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>smartbear-sweden-plugin-repository</id>
+            <url>http://www.soapui.org/repository/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
  
 </profile>
 ```
@@ -58,8 +64,14 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
 ```
 ### How to build the project
 
+Build only (no test)
 ```
-    mvn clean package
+    mvn clean package -DskipTests
+```
+If you want to run the tests
+
+```
+    mvn clean package -Dprod.key=<encryption key>
 ```
 
 ### Running the project

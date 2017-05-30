@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+    <munit:config name="munit" mock-connectors="false" mock-inbounds="false"  doc:name="MUnit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath:cicd.xml"/>
+    </spring:beans>
+    <munit:test name="new-test-suite-get:/dummy:cicd-configTest" description="Test">
+        <flow-ref name="get:/dummy:cicd-config" doc:name="get:/dummy:cicd-config"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="6fc4b1dd-efa3-4b1c-81e6-24ed44d16028">
+            <dw:input-payload doc:sample="/Users/anthonyrabiaza/Google Drive/MuleySandboxFolder/cicd_GET.json" mimeType="application/json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+payload[0].ID as :string]]></dw:set-payload>
+        </dw:transform-message>
+        <munit:assert-true condition="#[payload==1]" doc:name="Assert True"/>
+    </munit:test>
+    <munit:test name="new-test-suite-post:/dummy:cicd-configTest" description="Test">
+        <flow-ref name="post:/dummy:cicd-config" doc:name="Flow-ref to post:/dummy:cicd-config"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="9247a751-21b8-4849-ab26-8ba872d43741">
+            <dw:input-payload doc:sample="/Users/anthonyrabiaza/Google Drive/MuleySandboxFolder/cicd_POST.json" mimeType="application/json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+payload[0].code]]></dw:set-payload>
+        </dw:transform-message>
+        <munit:assert-true condition="#[payload==&quot;${code}&quot;]" doc:name="Assert True"/>
+    </munit:test>
+</mule>
