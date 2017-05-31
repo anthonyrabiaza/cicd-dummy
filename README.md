@@ -22,7 +22,7 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
 - in the &lt;profiles&gt; tag
 
 ```
-	<profile>
+<profile>
  
     <id>Mule</id>
     <activation>
@@ -60,11 +60,11 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
     	<cloudhub.username>anthonyrabiaza</cloudhub.username>
     	<cloudhub.environment>Sandbox</cloudhub.environment>
     	<!-- cloudhub.businessGroup>engineering\devops</cloudhub.businessGroup--><!-- uncomment businessGroup tag bellow-->
-		<!-- END ARA -->
+        <!-- END ARA -->
 ```
 ### How to build the project
 
-Build only (no test)
+Build only (no unit tests)
 ```
     mvn clean package -DskipTests
 ```
@@ -97,4 +97,11 @@ prod.key=password456
 
 ```
     mvn deploy -Dcloudhub.password=<Cloudhub password> -Dprod.key=<encryption key> -Danypoint.platform.client_secret=<anypoint secret>
+```
+
+### How to test the deployed project
+
+
+```
+    mvn integration-test -DskipMunitTests
 ```
