@@ -16,7 +16,7 @@ Please make sure that your HOME/.m2/setting.xml (example provided here [settings
     	<id>MuleRepository</id>
     	<username>User Provided by MuleSoft</username>
     	<password>Password</password>
-	</server>
+</server>
 ```
 
 - in the &lt;profiles&gt; tag
@@ -103,5 +103,30 @@ prod.key=password456
 
 
 ```
-    mvn integration-test -DskipMunitTests
+    mvn integration-test -DskipMunitTests -P integration-test
 ```
+
+
+### Troubleshooting
+
+- If you are have this issue (harmless):
+
+```
+ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+
+```
+
+Run the following command
+```
+mv ~/.soapuios/plugins/ ~/.soapuios/plugins_NOTinUse/
+```
+
+- If you are facing this issue:
+
+```
+com.smartbear.soapui:soapui-maven-plugin:5.3.0 or one of its dependencies could not be resolved: Could not find artifact javafx:jfxrt:jar:2.2 at specified path /Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre/lib/jfxrt.jar 
+
+```
+
+Locate jfxrt.jar (should be in JAVA_HOME/jre/lib/ext/jfxrt.jar) and copy it to JAVA_HOME/jre/lib
