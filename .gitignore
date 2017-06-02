@@ -7,3 +7,6 @@
 /target/
 
 target/classes/mule-app.properties
+/global-groovy.log
+/soapui-errors.log
+/soapui.log

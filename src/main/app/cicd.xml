@@ -42,7 +42,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </flow>
     <flow name="post:/dummy:cicd-config">
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
-        <set-payload value="[{&quot;message&quot;:&quot;POST OK&quot;, &quot;code&quot;: &quot;#['${code}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload" mimeType="text/json"/>
+        <set-payload value="[{&quot;message&quot;:&quot;POST OK&quot;, &quot;code&quot;: &quot;#['${code}']&quot;, &quot;anotherCode&quot;: &quot;#['${anotherCode}']&quot;}]" doc:name="Set Payload" mimeType="application/json"/>
     </flow>
     <apikit:mapping-exception-strategy name="cicd-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
