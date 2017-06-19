@@ -1,0 +1,41 @@
+Status: FAILED
+Time Taken: 272
+Size: 160
+Timestamp: Fri Jun 02 14:57:25 SGT 2017
+TestStep: Dummy 1 POST - POST
+
+----------------- Messages ------------------------------
+[JsonPath Match] Assertion failed for path [$[0].message] : IllegalArgumentException:Invalid JSON: Failed to transform from "json" to "java.lang.String" (org.mule.api.transformer.TransformerException). (org.mule.api.transformer.TransformerMessagingException).
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: http://cicd-dummy-ant.cloudhub.io
+Method: POST
+StatusCode: 500
+URL: http://cicd-dummy-ant.cloudhub.io/api/dummy
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.1.1 (java 1.5)]
+Host: [cicd-dummy-ant.cloudhub.io]
+Accept-Encoding: [gzip,deflate]
+Content-Length: [0]
+Content-Type: [application/json]
+
+POST http://cicd-dummy-ant.cloudhub.io/api/dummy HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: application/json
+Content-Length: 0
+Host: cicd-dummy-ant.cloudhub.io
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+
+---------------- Response --------------------------
+Server: [nginx]
+Connection: [keep-alive]
+#status#: [HTTP/1.1 500 Failed to transform from &quot;json&quot; to &quot;java.lang.String&quot; (org.mule.api.transformer.TransformerException). (org.mule.api.transformer.TransformerMessagingException).]
+Content-Length: [160]
+Date: [Fri, 02 Jun 2017 06:57:25 GMT]
+
+Failed to transform from "json" to "java.lang.String" (org.mule.api.transformer.TransformerException). (org.mule.api.transformer.TransformerMessagingException).
