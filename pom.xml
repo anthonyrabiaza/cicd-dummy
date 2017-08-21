@@ -319,6 +319,9 @@
 						<configuration>
 							<projectFile>src/test/resources/cicd-dummy-REST-soapui-project.xml</projectFile>
 							<exportAll>true</exportAll>
+							<junitReport>true</junitReport>
+							<printReport>true</printReport>
+							<outputFolder>target/surefire-reports/</outputFolder>
 						</configuration>
 						<executions>
 							<execution>
